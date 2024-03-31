@@ -13,7 +13,7 @@
 
 // I AM NOT DONE
 
-use std::collections::HashMap;
+use std::{collections::HashMap, os::unix::process};
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum Progress {
@@ -35,7 +35,7 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
     // map is a hashmap with String keys and Progress values.
     // map = { "variables1": Complete, "from_str": None, ... }
-    todo!();
+    map.iter().filter(|(_, &v)| v.eq(&value)).count()
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
